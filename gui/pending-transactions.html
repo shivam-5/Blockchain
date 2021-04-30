@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <title>VaxDist - Pending Transactions</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+    crossorigin="anonymous" />
+
+  <link href="css/style.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico" />
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <a class="list-group-item list-group-item-action bg-light" href="index.html"><img src="images/logo.svg"></img></a>
+      <div class="list-group list-group-flush">
+        <div class="distributor-nav d-none">
+          <a href="add-shipment.html" class="list-group-item list-group-item-action bg-light">Add Shipment</a>
+          <a href="pending-transactions.html" class="list-group-item list-group-item-action bg-light">Pending Transactions</a>
+          <a href="block-explorer.html" class="list-group-item list-group-item-action bg-light">Block Explorer</a>
+        </div>
+        <div class="client-nav d-none"><a href="request-shipment.html" class="list-group-item list-group-item-action bg-light">Request Shipment</a></div>
+      </div>
+    </div>
+
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <span class="navbar-toggler-icon border-0" id="menu-toggle"></span>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item" id="status-indicator"><i class="fas fa-circle"></i></li>
+            <li class="nav-item d-none" id="node-status-error">Node Offline. Check console for errors.</li>
+            <li class="nav-item node-status-block"><span id="distributor-client">Querying Node Status...</span></li>
+            <li class="nav-item node-status-block d-none"><strong>Node Type:</strong> <span id="node-type"></span></li>
+            <li class="nav-item node-status-block d-none"><strong>Node ID:</strong> <span class="break-all" id="node-id"></span></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="mt-2">Pending Transactions</h1>
+        <p>Below are the pending transactions for this node.</p>
+        <div class="alert alert-warning d-none" id="no-pending-transactions" role="alert">
+          This node currently has no pending transactions. Click <a href="pending-transactions.html">here</a> to refresh.
+        </div>
+        <div class="scrollable">
+          <table class="table d-none" id="pending-transactions-table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Origin/Client</th>
+                <th scope="col">Source</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Distributor</th>
+                <th scope="col">Date/Time</th>
+              </tr>
+            </thead>
+            <tbody id="pending-transactions-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/4e701a347d.js" crossorigin="anonymous"></script>
+  <script src="js/api-port.js"></script>
+  <script src="js/get-status.js"></script>
+  <script src="js/get-pending-transactions.js"></script>
+
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+</body>
+
+</html>
